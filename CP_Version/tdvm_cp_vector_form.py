@@ -6,7 +6,7 @@ Created on Fri Jul 26 16:44:15 2019
 """
 
 import sys
-sys.path.append("C:/Users/zlibn/Desktop/source")
+sys.path.append("C:/Users")
 
 import numpy as np
 import tensorly as tl
