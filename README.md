@@ -23,11 +23,11 @@ data analysis. As shown in the preliminary study, weakly dependencies can worsen
 
 Code Structure:
 .
-+-- CP_Version.py
++-- _CP_Version.py
 |   +-- POI.py
 |   +-- tdvm_cp_vector_form.py
 |   |   +-- tensorly
 |   |   +-- Telegram_chatbot.py
-+-- Parameters Searching, Networks and post-estimation analysis.py
++-- _Parameters Searching, Networks and post-estimation analysis.py
 |   +-- Telegram_chatbot.py
 |   +-- pca_plus_hierarchical_6PC.py
