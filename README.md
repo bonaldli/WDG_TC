@@ -22,6 +22,7 @@ data analysis. As shown in the preliminary study, weakly dependencies can worsen
 | Pre-Requisite| pip install tensorly==0.4.3|
 
 Code Structure:
+
 .
 +-- _CP_Version.py
 |   +-- POI.py
