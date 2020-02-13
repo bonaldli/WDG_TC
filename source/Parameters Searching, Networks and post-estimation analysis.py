@@ -13,6 +13,7 @@ then run this file
 # In[]
 """ POI Similarity Netowrk"""
 import pandas as pd
+import numpy as np
 POI = pd.read_csv("C:\\Users\\zlibn\\Desktop\\POI.CSV") #only the selected key
 poi = POI.set_index('POI')
 poi_sim = sim_matrix.cal(poi)
@@ -28,23 +29,6 @@ j = [[7],[7],[12],[3],[14],[8],[10],[11],[12],[8],[12],[11],[12],[12],[13]]
 net[i,j] = 1
 inds = np.triu_indices_from(net,k=1)
 net[(inds[1], inds[0])] = net[inds]
-
-# In[] 
-"""Multi-Run to get a satisfactory result""""
-rank_init = 150 #round(0.5*mean(I1, I2, I3))
-max_iter = 60
-alpha = 30
-beta = 1600
-gamma = 50
-delta = 80
-tol = 1000
-i = 0
-while recons_loss > 5e6:
-    MTRobot.sendtext("i={}".format(i))
-    X_hat = inflow.copy()
-    solver = TDVMCP(rank_init, K=max_iter, alpha = alpha, beta = beta, gamma = gamma, tol = tol)
-    X_hat, R, U, Lambda, V, recons_loss = solver.fit(X_hat, L_POI, L_NET, Ohm)
-    i = i+1
 
 # In[]
 """ search for best tuning parameters: (alpha, beta) """
@@ -108,3 +92,59 @@ best_gamma = pd.concat([error_list_3.idxmin(axis = 0) , np.amin(error_list_3, ax
 #                       axi = 0 min of each column       axis=0: min of each column
 
 # In[]:
+""" post-estimation descriptive analysis"""
+# [1] Clustering
+rank = np.nonzero(Lambda)[0]; # to get the non-zero rank
+U0_nz = U0[:,rank];
+# then jump to "pca_plus_hierarchical_6PC.py"
+
+# [2] Check Correlation
+
+def correlation_matrix_1(df):
+    from matplotlib import pyplot as plt
+    from matplotlib import cm as cm
+    fig = plt.figure(figsize=(15,15))
+    ax1 = fig.add_subplot(111)
+    ax1.xaxis.tick_top()
+    cmap = cm.get_cmap('jet', 30)
+    cax = ax1.imshow(df.corr(), interpolation="nearest", cmap=cmap) #Compute pairwise correlation of columns
+    ax1.grid(True)
+    plt.title('Correlation Matrix')
+    plt.xticks(np.arange(15), A_m_stn)
+    plt.yticks(np.arange(15), A_m_stn)
+    for tick in ax1.xaxis.get_majorticklabels():  # example for xaxis
+        tick.set_fontsize(12)
+    for tick in ax1.yaxis.get_majorticklabels():  # example for xaxis
+        tick.set_fontsize(12)
+    # Add colorbar, make sure to specify tick locations to match desired ticklabels
+    fig.colorbar(cax, ticks=[-0.1,0,.1,.2,.3,.4,.5,.6,.7,.8,.9,1])
+    plt.show()
+
+U0_nz_df = pd.DataFrame(np.transpose(U0_nz))
+correlation_matrix_1(U0_nz_df)
+# count how many is strongly-correlated
+corr = U0_nz_df.corr()
+N_stn = len(A_m_stn)
+weakly_correlated_rate = 1 - (sum(corr[corr > 0.7].count()) - N_stn)/(N_stn**2 - N_stn)
+
+# In[]:
+""" Uniform Comparison for Recon_MSE and MAPE"""
+# Input the last day's full prediction (15, 247)
+def mape_vectorized_v2(a, b): 
+    mask = a != 0
+    return (np.fabs(a - b)/a)[mask].mean()
+
+X_real = A_m[:, 74:247, 50]
+X_pred = tdvm_cp[:, 74:247]
+0.5*np.sum((X_real - X_pred) ** 2)
+
+mape_vectorized_v2(np.squeeze(X_real), np.squeeze(X_pred))
+
+
+
+
+
+
+
+
+
