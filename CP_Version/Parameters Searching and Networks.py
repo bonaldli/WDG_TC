@@ -29,23 +29,6 @@ net[i,j] = 1
 inds = np.triu_indices_from(net,k=1)
 net[(inds[1], inds[0])] = net[inds]
 
-# In[] 
-"""Multi-Run to get a satisfactory result""""
-rank_init = 150 #round(0.5*mean(I1, I2, I3))
-max_iter = 60
-alpha = 30
-beta = 1600
-gamma = 50
-delta = 80
-tol = 1000
-i = 0
-while recons_loss > 5e6:
-    MTRobot.sendtext("i={}".format(i))
-    X_hat = inflow.copy()
-    solver = TDVMCP(rank_init, K=max_iter, alpha = alpha, beta = beta, gamma = gamma, tol = tol)
-    X_hat, R, U, Lambda, V, recons_loss = solver.fit(X_hat, L_POI, L_NET, Ohm)
-    i = i+1
-
 # In[]
 """ search for best tuning parameters: (alpha, beta) """
 error_list = np.zeros((11,11))
