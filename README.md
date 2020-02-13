@@ -16,5 +16,17 @@ data analysis. As shown in the preliminary study, weakly dependencies can worsen
 ----------------------------------------------
 | Checklist | Comments |
 |----------------|----------------------|
-| Data | In the Data Folder |
+| Data | In the "processed" Folder |
+| Code | In the "source" Folder |
+| Some Results for Reference | In the "result" Folder|
 | Pre-Requisite| pip install tensorly==0.4.3|
+
+Code Structure:
++-- CP_Version.py
+|   +-- POI.py
+|   +-- tdvm_cp_vector_form.py
+|   |   +-- tensorly
+|   |   +-- Telegram_chatbot.py
++-- Parameters Searching, Networks and post-estimation analysis.py
+|   +-- Telegram_chatbot.py
+|   +-- pca_plus_hierarchical_6PC.py
