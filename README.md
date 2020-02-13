@@ -23,31 +23,13 @@ data analysis. As shown in the preliminary study, weakly dependencies can worsen
 
 Code Structure:
 
-.
-+-- _CP_Version.py
-|   +-- POI.py
-|   +-- tdvm_cp_vector_form.py
-|   |   +-- tensorly
-|   |   +-- Telegram_chatbot.py
-+-- _Parameters Searching, Networks and post-estimation analysis.py
-|   +-- Telegram_chatbot.py
-|   +-- pca_plus_hierarchical_6PC.py
-
-.
-├── _config.yml
-├── _drafts
-|   ├── begin-with-the-crazy-ideas.textile
-|   └── on-simplicity-in-technology.markdown
-├── _includes
-|   ├── footer.html
-|   └── header.html
-├── _layouts
-|   ├── default.html
-|   └── post.html
-├── _posts
-|   ├── 2007-10-29-why-every-programmer-should-play-nethack.textile
-|   └── 2009-04-26-barcamp-boston-4-roundup.textile
-├── _data
-|   └── members.yml
-├── _site
-└── index.html
+    .
+    ├── CP_Version.py
+    │   ├── POI.py
+    │   └── tdvm_cp_vector_form.py
+    │       ├── tensorly
+    │       └── Telegram_chatbot.py
+    ├── Parameters Searching, Networks and post-estimation analysis.py
+    │   ├── Telegram_chatbot.py
+    │   └── pca_plus_hierarchical_6PC.py
+  
