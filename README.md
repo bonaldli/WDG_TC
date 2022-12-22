@@ -1,9 +1,9 @@
-# WDGTC- Weakly-Dependent Graph Tensor Completion
+# WDGTC- Weakly-Dependent Graph Tensor Completion for Passenger Flow Prediction
 
 ## Title
 Tensor Completion for Weakly-dependent Data on Graph for Metro Passenger Flow Prediction
 
-This paper is accepted in AAAI-2020, and available at [arxiv](https://arxiv.org/abs/1912.05693)
+This paper is accepted in AAAI-2020, and also available at [arxiv](https://arxiv.org/abs/1912.05693)
 
 ## Abstract
 Low-rank tensor decomposition and completion have attracted significant interest from academia given the ubiquity
